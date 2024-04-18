@@ -3,7 +3,7 @@ import "./Login.css"
 import {Link, useNavigate} from "react-router-dom"
 import { auth } from '../firebases'
 function Login() {
-  const history=useNavigate();
+  const navigate=useNavigate();
   const[email, setEmail] = useState('')
   const[password, setPassword] = useState('')
     const login=(event) =>{
@@ -12,7 +12,7 @@ function Login() {
       auth.signInWithEmailAndPassword(email, password)
        .then((auth) => {
            // login in, redirect to homepage
-           history.push("/")
+           navigate('/');
        })
        .catch((e)=> alert(e.message));
     }
@@ -24,6 +24,7 @@ function Login() {
       auth.createUserWithEmailAndPassword(email, password)
        .then((auth) => {
            // create a user redirect to homepage
+           navigate('/');
        })
        .catch((e) =>alert(e.message))
     }
